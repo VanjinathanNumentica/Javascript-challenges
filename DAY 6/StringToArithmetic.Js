@@ -15,19 +15,15 @@ function parseArithmetic(str) {
     let left = "", right = "", operator = "";
     let i = 0;
 
-    // Skip leading spaces
     while (i < str.length && str[i] === ' ') i++;
 
-    // Parse left number
     while (i < str.length && str[i] >= '0' && str[i] <= '9') {
         left += str[i];
         i++;
     }
 
-    // Skip spaces
     while (i < str.length && str[i] === ' ') i++;
 
-    // Parse operator
     if (str[i] === '+' || str[i] === '-') {
         operator = str[i];
         i++;
@@ -37,10 +33,8 @@ function parseArithmetic(str) {
         );
     }
 
-    // Skip spaces
     while (i < str.length && str[i] === ' ') i++;
 
-    // Parse right number
     while (i < str.length && str[i] >= '0' && str[i] <= '9') {
         right += str[i];
         i++;
