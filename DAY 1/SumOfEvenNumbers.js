@@ -13,8 +13,8 @@ function findEvenSum(userInput) {
     let sumEven = 0;
     let hasEven = false; 
 
-    for (var i = 0; i < userInput.length; i++) {
-        var currentItem = userInput[i];
+    for (let i = 0; i < userInput.length; i++) {
+        let currentItem = userInput[i];
 
         if (typeof currentItem === 'number') {
             if (currentItem % 2 === 0) {

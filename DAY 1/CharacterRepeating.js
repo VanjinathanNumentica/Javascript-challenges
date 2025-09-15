@@ -8,20 +8,12 @@ function findRepeatingCharacter(inputString) {
         return;
     }
 
-    var Spaces = true;
-    for (var i = 0; i < inputString.length; i++) {
-        if (inputString[i] !== ' ') {
-            Spaces = false;
-            break;
-        }
-    }
+    let currentChar = '';
+    let currentCount = 0;
+    let maxChar = '';
+    let maxCount = 0;
 
-    var currentChar = '';
-    var currentCount = 0;
-    var maxChar = '';
-    var maxCount = 0;
-
-    for (var i = 0; i < inputString.length; i++) {
+    for (let i = 0; i < inputString.length; i++) {
         if (inputString[i] === currentChar) {
             currentCount++;
         } else {

@@ -5,7 +5,7 @@
 
 
 function sumOfMultiples(value, count) {
-    var sum = 0;
+    let sum = 0;
 
     if (
         value === undefined || count === undefined ||
@@ -16,7 +16,7 @@ function sumOfMultiples(value, count) {
         return;
     }
 
-    for (var i = 1; i <= count; i++) {
+    for (let i = 1; i <= count; i++) {
         sum = sum + (value * i);
     }
 

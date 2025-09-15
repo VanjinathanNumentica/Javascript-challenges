@@ -6,8 +6,8 @@
 
 
 function filterOut(array, invalidType) {
-    var validItems = [];
-    var index = 0;
+    let validItems = [];
+    let index = 0;
 
     if (array.length == 0) {  
         return(
@@ -15,9 +15,9 @@ function filterOut(array, invalidType) {
         );
     }
 
-    var targetType = invalidType.toLowerCase();
+    let targetType = invalidType.toLowerCase();
 
-    for (var i = 0; i < array.length; i++) {
+    for (let i = 0; i < array.length; i++) {
         if (typeof array[i] !== targetType) {
             validItems[index] = array[i];
             index++;
