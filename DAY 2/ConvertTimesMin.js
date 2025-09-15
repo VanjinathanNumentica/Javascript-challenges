@@ -10,82 +10,8 @@
 // "24:00" → 1440
 // "14:70" → throw (invalid minutes)
 
-// function convertTimeToMinutes(timeToConvert, options) {
-
-//     if (timeToConvert > '24:00') {
-//         console.error("Check your time!");
-//         return "";
-//     }
-
-//     else {
-//         let hours = 0;
-//         let minutes = 0;
-//         let colonFound = false;
-//         let i = 0;
-
-//         while (i < timeToConvert.length) {
-//             const charCode = timeToConvert.charCodeAt(i);// getting the ASCII code of the number
-
-//             if (charCode >= 48 && charCode <= 57) {
-//                 const digit = charCode - 48;
-//                 if (!colonFound) {
-//                     hours = hours * 10 + digit;
-//                 }
-//                 else {
-//                     minutes = minutes * 10 + digit;
-//                 }
-//             }
-//             else if (charCode === 58) {   //58 for colon
-//                 colonFound = true;
-//             }
-//             else if (charCode === 32) {   // 32 for space
-//                 i++;
-//                 break;
-//             }
-//             else {
-//                 return "Invalid input.Please check your input and leave space between time and AM/PM"
-//             }
-//             i++;
-//         }
-
-//         // 12 hours time formate
-//         let period = "";
-//         while (i < timeToConvert.length) {
-//             const character = timeToConvert.charCodeAt(i);
-//             period += String.fromCharCode(character);
-//             i++;
-//         }
-
-//         if ((period[0] === 'P' || period[0] === 'p') && hours !== 12) {
-//             hours += 12;
-//         }
-
-//         if ((period[0] === "A" || period[0] === "a") && hours === 12) {
-//             hours = 0;
-//         }
-//         totalMinutes = (hours * 60) + minutes;
-
-//         if (totalMinutes > 1440) {
-//             console.error("Don`t mix 24 time with AM/PM");
-//             return '';
-//         }
-//         else {
-//             return totalMinutes;
-//         }
-//     }
-// }
-// module.exports = { convertTimeToMinutes };
-// console.log(convertTimeToMinutes("2:30"));
-// console.log(convertTimeToMinutes("2:30:45", { round: 'nearest' }));
-// console.log(convertTimeToMinutes("12:00 am"));
-// console.log(convertTimeToMinutes("12:00 pm"));
-// console.log(convertTimeToMinutes("24:00"));
-
-
 function convertTimeToMinutes(timeToConvert, options) {
-    let hours = 0;
-    let minutes = 0;
-    let seconds = 0;
+    let hours = 0, minutes = 0, seconds = 0;
     let colonCount = 0;
     let i = 0;
     let currentValue = 0;
