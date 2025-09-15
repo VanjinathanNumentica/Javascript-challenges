@@ -17,16 +17,16 @@ function groupNamesByInitialLetter(names) {
     return;
   }
 
-  var groupedNames = {};
+  let groupedNames = {};
 
-  for (var i = 0; i < names.length; i++) {
-    var currentName = names[i];
+  for (let i = 0; i < names.length; i++) {
+    let currentName = names[i];
 
     if (typeof currentName !== 'string' || currentName.length === 0) {
       continue;
     }
 
-    var initial = currentName[0].toLowerCase();
+    let initial = currentName[0].toLowerCase();
 
     if (groupedNames[initial] === undefined) {
       groupedNames[initial] = [];
@@ -37,6 +37,6 @@ function groupNamesByInitialLetter(names) {
 
   return groupedNames;
 }
-var input = ["arun", "balu", "cathy", "Krish", "aadhir", "aariketh", "kamal"];
-var result = groupNamesByInitialLetter(input);
+let input = ["arun", "balu", "cathy", "Krish", "aadhir", "aariketh", "kamal"];
+let result = groupNamesByInitialLetter(input);
 console.log(result);

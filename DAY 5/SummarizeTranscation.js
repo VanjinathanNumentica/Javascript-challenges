@@ -38,23 +38,21 @@ function summarizeTransactions(transactions, groupByKey) {
     groupByKey = "userId";
   }
 
-  var groups = {};
-  var groupKeys = [];
+  let groups = {};
+  let groupKeys = [];
 
-  for (var i = 0; i < transactions.length; i++) {
-    var tx = transactions[i];
-    var key = tx[groupByKey];
+  for (let i = 0; i < transactions.length; i++) {
+    let tx = transactions[i];
+    let key = tx[groupByKey];
 
-    // Check if group exists
-    var found = false;
-    for (var j = 0; j < groupKeys.length; j++) {
+    let found = false;
+    for (let j = 0; j < groupKeys.length; j++) {
       if (groupKeys[j] === key) {
         found = true;
         break;
       }
     }
 
-    // Create group if not found
     if (!found) {
       groups[key] = {
         key: key,
@@ -67,40 +65,33 @@ function summarizeTransactions(transactions, groupByKey) {
       groupKeys[groupKeys.length] = key;
     }
 
-    var group = groups[key];
+    let group = groups[key];
 
-    // Update totals
     group.totalAmount = group.totalAmount + tx.amount;
     group.count = group.count + 1;
 
-    // Update byCategory
-    var cat = tx.category;
+    let cat = tx.category;
     if (!(cat in group.byCategory)) {
       group.byCategory[cat] = 0;
     }
     group.byCategory[cat] = group.byCategory[cat] + tx.amount;
 
-    // Update lastTransactionAt
     if (tx.ts > group.lastTransactionAt) {
       group.lastTransactionAt = tx.ts;
     }
   }
 
-  // Convert to array
-  var result = [];
-  for (var i = 0; i < groupKeys.length; i++) {
-    var k = groupKeys[i];
-    var g = groups[k];
+  let result = [];
+  for (let i = 0; i < groupKeys.length; i++) {
+    let k = groupKeys[i];
+    let g = groups[k];
 
-    // Manual timestamp normalization
-    var ts = g.lastTransactionAt;
+    let ts = g.lastTransactionAt;
     if (ts.length === 20) {
-      var newTs = "";
-      // Copy first 19 characters manually
-      for (var c = 0; c < 19; c++) {
+      let newTs = "";
+      for (let c = 0; c < 19; c++) {
         newTs += ts[c];
       }
-      // Append milliseconds and Z
       newTs += ".000Z";
       ts = newTs;
     }
@@ -109,12 +100,11 @@ function summarizeTransactions(transactions, groupByKey) {
     result[result.length] = g;
   }
 
-  // Manual sort
-  for (var i = 0; i < result.length - 1; i++) {
-    for (var j = i + 1; j < result.length; j++) {
-      var a = result[i];
-      var b = result[j];
-      var swap = false;
+  for (let i = 0; i < result.length - 1; i++) {
+    for (let j = i + 1; j < result.length; j++) {
+      let a = result[i];
+      let b = result[j];
+      let swap = false;
 
       if (b.totalAmount > a.totalAmount) {
         swap = true;
@@ -123,7 +113,7 @@ function summarizeTransactions(transactions, groupByKey) {
       }
 
       if (swap) {
-        var temp = result[i];
+        let temp = result[i];
         result[i] = result[j];
         result[j] = temp;
       }
@@ -132,7 +122,7 @@ function summarizeTransactions(transactions, groupByKey) {
 
   return result;
 }
-var transactions = [
+let transactions = [
   { id: "t1", userId: 101, category: "food",   amount: 120.5,  currency: "INR", ts: "2025-08-01T09:10:00Z" },
   { id: "t2", userId: 101, category: "travel", amount:  80.00, currency: "INR", ts: "2025-08-02T14:33:00Z" },
   { id: "t3", userId: 102, category: "food",   amount:  60.00, currency: "INR", ts: "2025-08-02T07:05:00Z" },
